@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PersonneController!{% endblock %}
+
+{% block body %}
+
+<div class="row mt-3">
+            <div class="col-10 ">
+                <h1 class="text-center ">Liste des personnes</h1>
+            </div>
+   
+           
+</div>
+
+ <table class="table ">
+            <thead class="">
+                <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Date de naissance</th>
+                <th></th>
+                <th></th>
+                </tr>
+            </thead>
+            <tbody>
+           {% for personne in personnes %}
+        
+            <tr>
+                <th scope="row" data-label="id" >
+                      <p>{{personne.id}}</p> 
+                </th>
+
+                <td  >
+                    <p>{{personne.nom}}</p> 
+                </td>
+                <td >
+                    <p>{{personne.prenom}}</p> 
+                </td>
+
+                <td >
+                    <p>{{personne.dateNaissance|date('d-m-Y')}}</p> 
+                </td>
+            
+                <td data-label="voir"><a class="btn btn-primary my-1"  href="{{ path('personne_voir', {id: personne.id}) }}">Voir</a></td>
+
+            </tr> 
+    
+          {% endfor %}
+            </tbody>
+        </table>
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PersonneController!{% endblock %}
+
+{% block body %}
+    {{form_start(form, {attr: {novalidate: 'novalidate'}})}}
+    {{ form_row(form._token) }}
+
+    <div class="row mb-3">
+            {% if app.request.attributes.get('_route') == 'personne_voir' %}
+            <div class="row my-3">
+                <div class="col-8 col-md-10">
+                    <h1 class="5">Editer la personne {{personne.nom}}</h1>
+                </div>
+            </div>
+        {% else %}
+            <div class="row my-3">
+                <div class="col-8 col-md-10">
+                    <h1 class="5">Nouvelle personne </h1>
+                </div>
+               
+            </div>
+        {% endif %}
+    
+        <div class="col-12 col-md-3">
+            {{ form_label(form.nom) }}
+            {{form_widget(form.nom)}}
+
+        </div>
+        <div class="col-12 col-md-3">
+            {{ form_label(form.prenom) }}
+            {{form_widget(form.prenom)}}
+        </div>
+        <div class="col-12 col-md-3">
+            {{ form_label(form.dateNaissance) }}
+            {{form_widget(form.dateNaissance)}}
+            <small class="form-error">
+                 {{ form_errors(form.dateNaissance) }}
+            </small>
+        </div>
+         <div class="col-12 col-md-3">
+           
+            {{form_widget(form.valider)}}
+            
+        </div>
+        
+    </div>
+
+    <div class="row"> 
+        <div class="col-2 ">
+                <a class="btn btn-primary" href="{{path('personne_liste')}}">Voir toutes les personnes</a>
+        </div>
+    </div>
+
+    
+    {{form_end(form)}}
+{% endblock %}
